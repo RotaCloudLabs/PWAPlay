@@ -1,0 +1,11 @@
+{
+    "name": "PWAPlay",
+    "short_name": "PWAPlay",
+    "description": "A PWA you can game on.",
+    "icons": [],
+    "start_url": "./?utm_source=pwa_install",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "black",
+    "theme_color": "black"
+}

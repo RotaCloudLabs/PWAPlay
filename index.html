@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="manifest" href="./manifest.webmanifest" />
+        <title>PlayDuo</title>
+        <style>
+            * {
+                -webkit-user-select: none;
+                user-select: none;
+            }
+
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                overscroll-behavior: none;
+            }
+
+            body {
+                font-family: system-ui;
+                font-size-adjust: none;
+                background-color: black;
+                color: white;
+            }
+
+            main {
+                display: grid;
+                width: 100dvw;
+                height: 100dvh;
+                overflow: hidden;
+            }
+
+            #screen {
+                aspect-ratio: 4/3;
+                box-sizing: border-box;
+                border: none;
+                background-color: rgb(255,255,255, 0.25);
+                width: 100%;
+            }
+
+            .button-set {
+                border: none;
+                display: inline-grid;
+                grid-template-columns: repeat(3, 55px);
+                grid-template-rows: repeat(3, 55px);
+                padding: 0;
+                place-items: center;
+            }
+
+            .button-set button {
+                color: white;
+                background-color: rgb(255,255,255, 0.25);
+                border: none;
+                height: 55px;
+                font-size: inherit;
+            }
+
+            #d-pad-buttons button {
+                border-radius: calc(infinity *1px);
+                aspect-ratio: 1/1.5;
+                text-indent: -99999px;
+                font-size: 0;
+                height: 55px;
+            }
+
+            #d-pad-buttons button#up {
+                grid-column: 2;
+                grid-row: 1;
+                margin-bottom: -16px;
+            }
+
+            #d-pad-buttons button#right {
+                grid-column: 3;
+                grid-row: 2;
+                width: 55px;
+                height: auto;
+                aspect-ratio: 1.5/1;
+                margin-left: -16px;
+            }
+
+            #d-pad-buttons button#down {
+                grid-column: 2;
+                grid-row: 3;
+                margin-top: -16px;
+            }
+
+            #d-pad-buttons button#left {
+                grid-column: 1;
+                grid-row: 2;
+                width: 55px;
+                height: auto;
+                aspect-ratio: 1.5/1;
+                margin-right: -16px;
+            }
+
+            #face-buttons {
+                grid-template-columns: repeat(3, 55px);
+                grid-template-rows: repeat(3, 55px);
+            }
+
+            #face-buttons button {
+                border-radius: calc(infinity *1px);
+                aspect-ratio: 1/1;
+            }
+
+            #face-buttons button#y {
+                grid-column: 2;
+                grid-row: 1;
+            }
+            #face-buttons button#b {
+                grid-column: 3;
+                grid-row: 2;
+            }
+            #face-buttons button#a {
+                grid-column: 2;
+                grid-row: 3;
+            }
+            #face-buttons button#x {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+
+            @media (orientation: portrait) {
+
+                main {
+                    grid-template-rows: auto 1fr;
+                    grid-template-columns: 1fr 1fr;
+
+                }
+
+                #screen {
+                    grid-column: span 2;
+                    grid-row: 1;
+                    place-self: center;
+                }
+
+                #left-input {
+                    grid-column: 1;
+                    grid-row: 2;
+                    place-self: start start;
+                    padding: 40px 8px;
+                }
+
+                #right-input {
+                    grid-column: 2;
+                    grid-row: 2;
+                    place-self: start end;
+                    padding: 96px 16px;
+                }
+
+            }
+
+
+            @media (orientation: landscape) {
+                main {
+                    grid-template-rows: 1fr;
+                    grid-template-columns: auto 1fr auto;
+
+                }
+
+                #screen {
+                    grid-column: 2;
+                    grid-row: 1;
+                    place-self: start center;
+                }
+
+                #left-input {
+                    grid-column: 1;
+                    grid-row: 1;
+                    place-self: start start;
+                    padding: 8px;
+                }
+
+                #right-input {
+                    grid-column: 3;
+                    grid-row: 1;
+                    place-self: start end;
+                    margin: 16px;
+                }
+            }
+        </style>
+        <script src="" defer></script>
+    </head>
+    <body>
+        <main>
+            <iframe id="screen" srcdoc="<canvas></canvas><script src=''></script>"></iframe>
+            <div id="left-input">
+                <fieldset class="button-set" id="d-pad-buttons">
+                    <button id="up">Up</button>
+                    <button id="right">Right</button>
+                    <button id="down">Down</button>
+                    <button id="left">Left</button>
+                </fieldset>
+            </div>
+            <div id="right-input">
+                <fieldset class="button-set" id="face-buttons">
+                    <button id="y">Y</button>
+                    <button id="b">B</button>
+                    <button id="a">A</button>
+                    <button id="x" ontouchstart="return false;">X</button>
+                </fieldset>
+            </div>
+        </main>
+        <script>
+            "use strict"
+            // document.body.addEventListener('touchstart', (e) => {e.preventDefault()}, { passive: false });
+        </script>
+    </body>
+</html>
