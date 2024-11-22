@@ -112,17 +112,28 @@
                 grid-column: 2;
                 grid-row: 1;
             }
+
             #face-buttons button#b {
                 grid-column: 3;
                 grid-row: 2;
             }
+
             #face-buttons button#a {
                 grid-column: 2;
                 grid-row: 3;
             }
+
             #face-buttons button#x {
                 grid-column: 1;
                 grid-row: 2;
+            }
+
+            #install-prompt {
+                display: none;
+                position: fixed;
+                inset: 0;
+                backdrop-filter: blur(40px);
+                padding: 1em;
             }
 
 
@@ -184,12 +195,17 @@
                     margin: 16px;
                 }
             }
+
+            @media all and (display-mode: standalone) {
+                #install-prompt {
+                    display: none;
+                }
+            }
         </style>
-        <script src="" defer></script>
     </head>
     <body>
         <main>
-            <iframe id="screen" srcdoc="<canvas></canvas><script src=''></script>"></iframe>
+            <iframe id="screen" title="screen"></iframe>
             <div id="left-input">
                 <fieldset class="button-set" id="d-pad-buttons">
                     <button id="up">Up</button>
@@ -207,9 +223,25 @@
                 </fieldset>
             </div>
         </main>
+        <div id="install-prompt">
+            <h1>Install PWAPlay</h1>
+
+            <p>&rarr; Share</p>
+            <p>&rarr; Add to Home Screen</p>
+        </div>
         <script>
             "use strict"
-            // document.body.addEventListener('touchstart', (e) => {e.preventDefault()}, { passive: false });
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const URLParams = new URLSearchParams(window.location.search);
+
+                if (URLParams.has('load')) {
+                    const gameURL = URLParams.get('load');
+                    
+                    const screen = document.getElementById('screen');
+                   
+                    screen.setAttribute('srcdoc', `<canvas id=\"canvas\"><\/canvas><script src=\"${gameURL}\"><\/script>`);
+                }
+            });
         </script>
     </body>
 </html>
