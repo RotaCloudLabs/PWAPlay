@@ -242,14 +242,16 @@
 
                 const URLParams = new URLSearchParams(window.location.search);
 
+                let gameURL = 'https://hexgl.bkcore.com/play/';
                 if (URLParams.has('load')) {
-                    const gameURL = URLParams.get('load');
+                    gameURL = URLParams.get('load');
                     
                     const screen = document.getElementById('screen');
                    
                     // screen.setAttribute('srcdoc', `<canvas id=\"canvas\"><\/canvas><script src=\"${gameURL}\"><\/script>`);
-                    screen.setAttribute('src', gameURL);
+                   
                 }
+                screen.setAttribute('src', gameURL);
             });
         </script>
     </body>
